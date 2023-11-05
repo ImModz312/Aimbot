@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RunAnalyzersDuringBuild>True</RunAnalyzersDuringBuild>
+		<RunAnalyzersDuringLiveAnalysis>True</RunAnalyzersDuringLiveAnalysis>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<BaseOutputPath></BaseOutputPath>
+		<ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+		<AssemblyName>CRINGE</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <Optimize>False</Optimize>
+	  <DebugType>none</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DebugType>portable</DebugType>
+	  <Optimize>False</Optimize>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Reference Include="0Harmony">
+			<HintPath>$(MSBuildProgramFiles32)\..\Users\$(USERNAME)\Documents\RealmOfTheMadGod\Production\MelonLoader\net6\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(MSBuildProgramFiles32)\..\Users\$(USERNAME)\Documents\RealmOfTheMadGod\Production\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="MelonLoader">
+			<HintPath>$(MSBuildProgramFiles32)\..\Users\$(USERNAME)\Documents\RealmOfTheMadGod\Production\MelonLoader\net6\MelonLoader.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(MSBuildProgramFiles32)\..\Users\$(USERNAME)\Documents\RealmOfTheMadGod\Production\MelonLoader\Il2CppAssemblies\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(MSBuildProgramFiles32)\..\Users\$(USERNAME)\Documents\RealmOfTheMadGod\Production\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppSystem">
+			<HintPath>$(MSBuildProgramFiles32)\..\Users\$(USERNAME)\Documents\RealmOfTheMadGod\Production\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2Cppmscorlib">
+			<HintPath>$(MSBuildProgramFiles32)\..\Users\$(USERNAME)\Documents\RealmOfTheMadGod\Production\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Runtime">
+			<HintPath>$(MSBuildProgramFiles32)\..\Users\$(USERNAME)\Documents\RealmOfTheMadGod\Production\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.InputLegacyModule">
+		  <HintPath>Properties\UnityEngine.InputLegacyModule.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+</Project>
