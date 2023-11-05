@@ -28,7 +28,8 @@ namespace ModTemplate
         public static extern IntPtr GetForegroundWindow();
         [DllImport("user32.dll")]
         public static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-        public static void MoveMouseSmoothly(float targetX, float targetY, float durationInSeconds)
+
+        /*public static void MoveMouseSmoothly(float targetX, float targetY, float durationInSeconds)
         {
             const string gameWindowTitle = "ROTMGExalt";
             StringBuilder activeWindowTitle = new StringBuilder(256);
@@ -37,10 +38,8 @@ namespace ModTemplate
             {
 
             }
-    }
-
-
-            public static void MoveMouse(int x, int y)
+        }*/
+        public static void MoveMouse(int x, int y)
         {
             SetCursorPos(x, y);
         }

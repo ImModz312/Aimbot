@@ -143,8 +143,6 @@ namespace BasicMelonMod
                         AimAtEnemy(cEP);
                     }
             }
-            //ShowFloatingText("Cringe", true);
-
         }
         private void AimAtEnemy(Vector3 enemyPosition)
         {
@@ -159,7 +157,7 @@ namespace BasicMelonMod
             Vector3 screenPosition = CalculateScreenPosition(this.sx, this.sy, this.angleRadians);
             if (this.x > 0.0f && this.y > 0.0f)
             {
-                MouseMover.SetCursorPos((int)screenPosition.x, (int)screenPosition.y);
+                MouseMover.MoveMouse((int)screenPosition.x, (int)screenPosition.y);
             }
         }
 
