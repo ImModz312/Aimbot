@@ -19,7 +19,7 @@ namespace BasicMelonMod
     {
 
         /*
-        thank you mimi and DIA4A for making this possible <3
+        thank you mimi and DIA4A
         FKALGHJIADI is player
         BHJFNEAHAOE is player speed
         DFALIKKKGLI is dictionary
