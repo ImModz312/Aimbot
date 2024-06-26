@@ -7,11 +7,15 @@ using System.Runtime.InteropServices;
 using System.Windows;
 using System.Threading;
 using System.Windows.Input;
+using UnityEngine;
+using System.Collections;
+using static MelonLoader.MelonLogger;
 
 namespace ModTemplate
 {
-    public class MouseMover
+    public class MouseMover : MonoBehaviour
     {
+
         public struct POINT
         {
             public int X;
@@ -29,6 +33,9 @@ namespace ModTemplate
         [DllImport("user32.dll")]
         public static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
         /*public static void MoveMouseSmoothly(float targetX, float targetY, float durationInSeconds)
         {
             const string gameWindowTitle = "ROTMGExalt";
@@ -39,52 +46,49 @@ namespace ModTemplate
 
             }
         }*/
+
+            
         public static void MoveMouse(int x, int y)
         {
+            string rotmgtitle = "RotMGExalt";
+
+            IntPtr rotmgHandle = FindWindow(null, rotmgtitle); // You can specify a class name or null for lpClassName
+            IntPtr currentWindowHandle = GetForegroundWindow();
+
+            if (rotmgHandle != IntPtr.Zero && rotmgHandle == currentWindowHandle)
+            {
             SetCursorPos(x, y);
+            }
+            //SetCursorPos(x, y);
         }
 
-        
-        
-        public static void MoveMouseSmoothly(float targetX, float targetY, float durationInSeconds)
+
+
+        /*public void MoveMouseSmoothly(float targetX, float targetY, float durationInSeconds)
+        {
+            StartCoroutine((Il2CppSystem.Collections.IEnumerator)MoveMouseCoroutine(targetX, targetY, durationInSeconds));
+        }
+
+        private IEnumerator MoveMouseCoroutine(float targetX, float targetY, float durationInSeconds)
         {
             POINT cursorPosition;
             if (GetCursorPos(out cursorPosition))
             {
-                //Console.WriteLine($"Cursor X: {cursorPosition.X}");
-                //Console.WriteLine($"Cursor Y: {cursorPosition.Y}");
+                int steps = (int)(durationInSeconds * 100); // Adjust the number of steps as needed
+                float stepX = (targetX - cursorPosition.X) / steps;
+                float stepY = (targetY - cursorPosition.Y) / steps;
+
+                for (int i = 0; i < steps; i++)
+                {
+                    float currentX = cursorPosition.X + stepX * i;
+                    float currentY = cursorPosition.Y + stepY * i;
+                    SetCursorPos((int)currentX, (int)currentY);
+                    yield return new WaitForSeconds(0.01f); // Adjust the wait time for desired speed
+                }
+
+                SetCursorPos((int)targetX, (int)targetY);
             }
-            int steps = (int)(durationInSeconds * 100); // Adjust the number of steps as needed
-            float stepX = (targetX - cursorPosition.X) / steps;
-            float stepY = (targetY - cursorPosition.Y) / steps;
-
-            for (int i = 0; i < steps; i++)
-            {
-                float currentX = cursorPosition.X + stepX * i;
-                float currentY = cursorPosition.Y + stepY * i;
-                SetCursorPos((int)currentX, (int)currentY);
-                Thread.Sleep(10); // Adjust the sleep time for desired speed
-            }
-
-            SetCursorPos((int)targetX, (int)targetY);
-        }
-
-        public static void MoveMouseSlowly(float targetX, float targetY, float durationInSeconds)
-        {
-            int steps = 100; // Number of steps to move the cursor
-            int delay = (int)(durationInSeconds * 1000) / steps; // Calculate delay between steps
-
-            for (int i = 1; i <= steps; i++)
-            {
-                float currentX = targetX * (i / (float)steps);
-                float currentY = targetY * (i / (float)steps);
-
-                SetCursorPos((int)currentX, (int)currentY);
-                Thread.Sleep(delay);
-            }
-
-            SetCursorPos((int)targetX, (int)targetY);
-        }
+        }*/
 
         [DllImport("user32.dll")]
         private static extern short GetAsyncKeyState(Keys vKey);
