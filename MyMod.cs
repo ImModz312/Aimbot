@@ -506,17 +506,12 @@ namespace BasicMelonMod
             Vector3 desiredDirection = (targetPosition - currentPosition).normalized;
             Vector3 sidestepLeft = new Vector3(-desiredDirection.y, desiredDirection.x, 0).normalized;
             Vector3 sidestepRight = new Vector3(desiredDirection.y, -desiredDirection.x, 0).normalized;
-            Vector3 sidestepDown = new Vector3(desiredDirection.x, desiredDirection.y + 1, 0).normalized;
-            Vector3 sidestepUp = new Vector3(desiredDirection.x, desiredDirection.y - 1, 0).normalized;
+
 
             if (!IsNearCollision(currentPosition + sidestepLeft))
                 return sidestepLeft;
             else if (!IsNearCollision(currentPosition + sidestepRight))
                 return sidestepRight;
-            else if (!IsNearCollision(currentPosition + sidestepDown))
-                return sidestepDown;
-            else if (!IsNearCollision(currentPosition + sidestepUp))
-                return sidestepUp;
             else
                 return Vector3.zero;
         }
